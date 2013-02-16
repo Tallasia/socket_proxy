@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Server</title>
+  <script type="text/javascript" src="../vendor/socket.io.min.js"></script>
+  <script type="text/javascript">
+    var socket = io.connect('http://localhost/as_server');
+
+    socket.on('connect', function () {
+      console.log('server connected');
+    });
+
+    socket.on('error', function (error) {
+      console.error(error.message);
+    });
+
+    socket.on('data', function (data) {
+      console.log(data);
+      data.to = data.from;
+      delete data.from;
+      socket.emit('data', data);
+    });
+  </script>
+</head>
+<body>
+
+</body>
+</html>
