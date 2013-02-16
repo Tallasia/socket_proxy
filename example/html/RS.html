@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Server</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script type="text/javascript" src="../../vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="../../vendor/socket.io.min.js"></script>
+  <script type="text/javascript">
+    var socket = io.connect('http://localhost/as_server');
+    var log = function (text) {
+      $('<div/>').text(text).appendTo('body');
+    };
+
+    socket.on('connect', function () {
+      log('socket connected');
+    });
+
+    socket.on('error', function (error) {
+      log('Error: ' + error.message);
+    });
+
+    socket.on('data', function (data) {
+      log('Message received: "' + data.text + '" from ' + data.from + '. Send it back');
+      data.to = data.from;
+      delete data.from;
+      socket.emit('data', data);
+    });
+  </script>
+</head>
+<body>
+
+</body>
+</html>

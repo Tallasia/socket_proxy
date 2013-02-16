@@ -3,13 +3,14 @@
   "description": "proxy socket server",
   "version": "0.0.1",
   "author": "Andrey Balakirev <balakirev.andrey@gmail.com>",
-  "main": "./lib/proxy_socket_server",
+  "main": "./lib/server/proxy_socket_server",
   "directories": {
     "lib": "./lib",
     "example": "./example"
   },
   "dependencies": {
-    "socket.io": ">=0.5.2"
+    "socket.io": ">=0.5.2",
+    "requirejs": "*"
   },
   "engines": {
     "node": ">=0.8.0"
