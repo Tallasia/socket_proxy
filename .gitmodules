@@ -1,0 +1,3 @@
+[submodule "vendor/ofio"]
+	path = vendor/ofio
+	url = git@github.com:jifeon/ofio.git
