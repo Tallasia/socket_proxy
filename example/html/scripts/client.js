@@ -1,10 +1,10 @@
 requirejs.config({
-  baseUrl: '../../lib/client',
+  baseUrl: './scripts',
   paths: {
-    vendor: '../../vendor',
-    ofio: '../../vendor/ofio',
-    io: '../../vendor/socket.io.min',
-    _: '../../vendor/underscore-min'
+    vendor: '../../../vendor',
+    ofio: '../../../vendor/ofio',
+    io: '../../../vendor/socket.io.min',
+    _: '../../../vendor/underscore-min'
   },
   shim: {
     io: {
@@ -19,7 +19,8 @@ requirejs.config({
 requirejs(['FormsManager', 'io', 'shim'], function (FormsManager, io) {
   var socket = io.connect('http://82.166.192.202:10843/as_client');
   var forms = new FormsManager({
-    socket: socket
+    socket: socket,
+    el: document.body
   });
 
   socket.on('available servers', function (data) {
