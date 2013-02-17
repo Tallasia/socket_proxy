@@ -1,4 +1,4 @@
-define(['ofio/ofio', '_', 'ofio/ofio.jquery'], function (Ofio, _) {
+define(['ofio/ofio', '_', 'ofio/ofio.jquery'], function (Ofio) {
   /**
    * @class Form
    */
