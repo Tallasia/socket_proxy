@@ -30,6 +30,10 @@ define(['ofio/ofio', 'Form', 'ofio/ofio.jquery'], function (Ofio, Form) {
     ids.forEach(this.remove_form.bind(this));
   };
 
+  FormsManager.prototype.remove_all_forms = function () {
+    this.remove_forms(Object.keys(this._forms));
+  };
+
   FormsManager.prototype.remove_form = function (id) {
     var form = this.get_by_id(id);
     if (form) {

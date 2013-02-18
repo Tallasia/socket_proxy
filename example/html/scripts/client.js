@@ -24,6 +24,7 @@ requirejs(['FormsManager', 'io', 'shim'], function (FormsManager, io) {
   });
 
   socket.on('available servers', function (data) {
+    forms.remove_all_forms();
     forms.create_forms(data.ids);
   });
 
