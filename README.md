@@ -1,12 +1,58 @@
 sockets_proxy
 =============
 
-```bash
-git clone git://github.com/jifeon/sockets_proxy.git
-cd sockets_proxy
-git submodule update --init
-npm install .
-node example/IS.js
+Installation
+------------
+
+1. Install git and node
+2. Clone the repo and install dependencies
+
+    ```bash
+    $ git clone git://github.com/jifeon/sockets_proxy.git
+    $ cd sockets_proxy
+    $ npm install .
+    ```
+3. Install [forever](https://github.com/nodejitsu/forever) globally
+
+    ```bash
+    $ sudo npm install -g forever
+    ```
+
+Usage
+-----
+
+### Write some code
+
+File structure:
+```
+/your_project
+  index.js
+  /node_modules
+    /sockets_proxy <- clone repo here
+```
+File index.js:
+```js
+var ProxyServer = require('sockets_proxy');
+new ProxyServer();
 ```
 
-Open few pages for clients (example/html/client.html) and servers (example/html/RS.html)
+### Run the application
+
+For debug
+```bash
+$ node index.js
+```
+
+On production
+```bash
+$ forever start index.js
+```
+
+To stop application
+```bash
+$ forever list
+> info:    Forever processes running
+> data:        uid  command             script   forever pid  logfile                        uptime      
+> data:    [0] L7wG /usr/local/bin/node index.js 4156    4196 /home/jifeon/.forever/L7wG.log 0:0:0:0.160
+$ forever stop 0
+```
