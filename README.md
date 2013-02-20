@@ -56,3 +56,44 @@ $ forever list
 > data:    [0] L7wG /usr/local/bin/node index.js 4156    4196 /home/jifeon/.forever/L7wG.log 0:0:0:0.160
 $ forever stop 0
 ```
+
+Configuring
+-----------
+
+You can specify some options for ProxyServer.
+
+### port
+_default:_ ```80```
+
+The server will listen that port
+
+### io_options
+_default:_ ```{}```
+
+[Options for Socket.IO](https://github.com/LearnBoost/Socket.IO/wiki/Configuring-Socket.IO)
+
+### Example
+
+```js
+var ProxyServer = require('sockets_proxy');
+new ProxyServer({
+    port: 3000,
+    io_options{
+        'flash policy port': 843
+    }
+});
+```
+
+Connecting servers
+------------------
+
+To connect server 
+
+
+
+
+
+
+
+
+
