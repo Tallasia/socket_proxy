@@ -87,10 +87,58 @@ new ProxyServer({
 Connecting servers
 ------------------
 
-To connect server 
+To connect remote server just open WS connection using [Socket.IO library](http://socket.io) to adress 
+http://your.server.com:3000/as_server
 
+After that start listen follow events of socket object:
 
+### "connect"
 
+Your server connected and registred on proxy server
+
+### "error"
+
+Arguments: {Error} error
+
+An error ocurred during connection
+
+### "data"
+
+Arguments: {Object} data
+
+Event rising up when data from client are recieved. You can get id of client from `data.from`. You also can use this 
+event to send data to client. You should specify `data.to` in this case.
+
+Example for javascript:
+```js
+socket.on('data', function (data) {
+  log('Message received: "' + data.text + '" from ' + data.from + '. Send it back');
+  
+  var callbackData = {
+      to: data.from
+      text: 'message received'
+  };
+  socket.emit('data', callbackData);
+});
+```
+
+Connecting clients
+------------------
+
+To connect client to proxy open WS connection using [Socket.IO library](http://socket.io) to adress 
+http://your.server.com:3000/as_client
+
+After that start listen follow events of socket object:
+
+### "connect"
+
+Your server connected and registred on proxy server
+
+### "error"
+
+Arguments: {Error} error
+
+An error ocurred during connection
 
 
 
