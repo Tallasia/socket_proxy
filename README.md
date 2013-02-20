@@ -98,15 +98,15 @@ Your server connected and registred on proxy server
 
 ### "error"
 
-Arguments: {Error} error
+_Arguments:_ `{Error} error`
 
 An error ocurred during connection
 
 ### "data"
 
-Arguments: {Object} data
+_Arguments:_ `{Object} data`
 
-Event rising up when data from client are recieved. You can get id of client from `data.from`. You also can use this 
+Event rising up when data from client is recieved. You can get id of client from `data.from`. You also can use this 
 event to send data to client. You should specify `data.to` in this case.
 
 Example for javascript:
@@ -132,16 +132,67 @@ After that start listen follow events of socket object:
 
 ### "connect"
 
-Your server connected and registred on proxy server
+Client connected to proxy
 
 ### "error"
 
-Arguments: {Error} error
+_Arguments:_ `{Error} error`
 
 An error ocurred during connection
 
+### "available servers"
 
+_Arguments:_ `{Object} data`
 
+Emited after proxy is connected. It informs about available servers connected to the proxy. It's also rising up whan proxy
+server restarts. You should forget all saved servers on this event, cause they are no longer exist on proxy server. You
+should replace it by received `data.ids`. 
+
+`data.ids` is array of strings. Every string is id of remote server. You can use that ids to send a messages to remote 
+server.
+
+```js
+socket.on('available servers', function (data) {
+    // send messages to all available servers
+    data.ids.forEach(function(id){
+        socket.emit('data', {
+            to: id,
+            hi: "remote server"
+        });
+    });
+});
+```
+
+### "new server"
+
+_Arguments:_ `{Object} data`
+
+New remote server is connected to proxy server. You can get id of that server from `data.id`
+
+### "servers disconnected"
+
+_Arguments:_ `{Object} data`
+
+Emited whan one or few remote servers are disconneced from proxy server. Array `data.ids` contains identificators of that 
+servers.
+
+### "data"
+
+_Arguments:_ `{Object} data`
+
+Event rising up when data from remote server is recieved. You can get id of server from `data.from`. You also can use 
+this event to send data to remote server. You should specify `data.to` in this case.
+
+Example for javascript:
+```js
+socket.on('data', function (data) {
+    console.log('Data recieved from server', data.from);
+    console.log(data);
+});
+```
+
+Run the example
+---------------
 
 
 
