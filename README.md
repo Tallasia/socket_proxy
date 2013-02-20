@@ -26,7 +26,7 @@ Usage
 File structure:
 ```
 /your_project
-  index.js
+  /index.js
   /node_modules
     /sockets_proxy <- clone repo here
 ```
@@ -191,8 +191,19 @@ socket.on('data', function (data) {
 });
 ```
 
-Run the example
+Example
 ---------------
+
+You can see example within a folder `example`
+```
+/example
+    /IS.js  - proxy server runner
+    /html
+        /client.html    - html for client, client.js is more interesting
+        /RS.html        - remote server emulator
+        /scripts
+            /client.js  - scripts for client
+```
 
 
 
