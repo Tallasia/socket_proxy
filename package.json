@@ -3,7 +3,7 @@
   "description": "proxy socket server",
   "version": "0.0.1",
   "author": "Andrey Balakirev <balakirev.andrey@gmail.com>",
-  "main": "./lib/server/proxy_socket_server",
+  "main": "./lib/proxy_socket_server",
   "directories": {
     "lib": "./lib",
     "example": "./example"
