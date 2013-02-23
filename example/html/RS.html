@@ -6,7 +6,8 @@
   <script type="text/javascript" src="../../vendor/jquery.min.js"></script>
   <script type="text/javascript" src="../../vendor/socket.io.min.js"></script>
   <script type="text/javascript">
-    var socket = io.connect('http://82.166.192.202:3000/as_server');
+    var name = prompt('Type the server name');
+    var socket = io.connect('http://82.166.192.202:3000/as_server?name=' + name);
     var log = function (text) {
       $('<div/>').text(text).appendTo('body');
     };

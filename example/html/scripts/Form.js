@@ -23,6 +23,7 @@ define(['ofio/ofio', '_', 'ofio/ofio.jquery'], function (Ofio) {
   Form.prototype.init = function () {
     this._server_id = this.options.id;
     this._socket = this.options.socket;
+    this._server_ip = this.options.ip;
     this._$log = this.$('.' + this.classes.log);
     this._$input = this.$('input[type="text"]');
 
@@ -34,7 +35,7 @@ define(['ofio/ofio', '_', 'ofio/ofio.jquery'], function (Ofio) {
    * @function
    */
   Form.prototype._template = _.template(
-    '<form class="server_form"><input type="text"/><input type="submit"/><div class="<%= log %>"></div></form>'
+    '<form class="server_form"><div><%= options.id %>:<%= options.ip %></div><input type="text"/><input type="submit"/><div class="<%= classes.log %>"></div></form>'
   );
 
 
@@ -47,7 +48,10 @@ define(['ofio/ofio', '_', 'ofio/ofio.jquery'], function (Ofio) {
 
 
   Form.prototype.render = function () {
-    return this._template(this.classes);
+    return this._template({
+      classes: this.classes,
+      options: this.options
+    });
   };
 
 

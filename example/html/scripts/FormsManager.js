@@ -18,9 +18,10 @@ define(['ofio/ofio', 'Form', 'ofio/ofio.jquery'], function (Ofio, Form) {
     ids.forEach(this.create_form.bind(this));
   };
 
-  FormsManager.prototype.create_form = function (id) {
-    this._forms[id] = new Form({
-      id: id,
+  FormsManager.prototype.create_form = function (data) {
+    this._forms[data.id] = new Form({
+      id: data.id,
+      ip: data.ip,
       socket: this._socket
     });
     this._servers_exists(true);

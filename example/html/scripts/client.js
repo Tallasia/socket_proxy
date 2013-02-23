@@ -25,11 +25,11 @@ requirejs(['FormsManager', 'io', 'shim'], function (FormsManager, io) {
 
   socket.on('available servers', function (data) {
     forms.remove_all_forms();
-    forms.create_forms(data.ids);
+    forms.create_forms(data.servers);
   });
 
   socket.on('new server', function (data) {
-    forms.create_form(data.id);
+    forms.create_form(data);
   });
 
   socket.on('servers disconnected', function (data) {
