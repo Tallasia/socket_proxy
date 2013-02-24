@@ -63,12 +63,12 @@ Configuring
 You can specify some options for ProxyServer.
 
 ### port
-_default:_ ```80```
+_default:_ `80`
 
 The server will listen that port
 
 ### io_options
-_default:_ ```{}```
+_default:_ `{}`
 
 [Options for Socket.IO](https://github.com/LearnBoost/Socket.IO/wiki/Configuring-Socket.IO)
 
@@ -88,7 +88,9 @@ Connecting servers
 ------------------
 
 To connect remote server just open WS connection using [Socket.IO library](http://socket.io) to adress 
-http://your.server.com:3000/as_server
+http://your.server.com:3000/as_server?name=NAME_OF_SERVER
+
+NAME_OF_SERVER is a string which will be used as id of server.
 
 After that start listen follow events of socket object:
 
@@ -192,7 +194,7 @@ socket.on('data', function (data) {
 ```
 
 Example
----------------
+-------
 
 You can see example within a folder `example`
 ```
@@ -203,6 +205,28 @@ You can see example within a folder `example`
         /RS.html        - remote server emulator
         /scripts
             /client.js  - scripts for client
+```
+
+Filter available servers
+------------------------
+
+You can filter available servers for specific clients. It means that clients will not response info about some servers
+after conection. And even if this clients would try to send messages to not availables (but existing) servers, thay 
+respond an error "permission denied"
+
+You can see full example in example/IS.js 
+
+```js
+var ProxySocketsServer = require('sockets_proxy');
+var proxy = new ProxySocketsServer({
+  port: 3000
+});
+
+// You can redefine this function to define permitions
+proxy.filter = function (client_socket, server_socket) {
+  // client_socket.handshake.query - GET params of connection
+  return client_socket.handshake.query.not != server_socket.handshake.query.name;
+};
 ```
 
 
