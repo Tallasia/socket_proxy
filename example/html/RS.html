@@ -7,7 +7,7 @@
   <script type="text/javascript" src="scripts/vendor/socket.io.min.js"></script>
   <script type="text/javascript">
     var name = prompt('Type the server name');
-    var socket = io.connect('http://localhost:3000/as_server?name=' + name);
+    var socket = io.connect('http://82.166.192.202:3000/as_server?name=' + name);
     var log = function (text) {
       $('<div/>').text(text).appendTo('body');
     };
