@@ -1,25 +1,25 @@
 define(['ofio/ofio', 'vendor/underscore', 'ofio/ofio.id', 'ofio/ofio.events'], function (Ofio) {
   var module = new Ofio.Module({
-    name         : 'ofio.model',
-    dependencies : arguments
+    name: 'ofio.model',
+    dependencies: arguments
   });
 
-  module.init = function(){
+  module.init = function () {
     init_attributes.call(this);
   };
 
-  module.create_attribute = function(attr, value){
+  module.create_attribute = function (attr, value) {
     if (value === undefined) value = null;
 
     Object.defineProperty(this, attr, {
-      set : function (v) {
+      set: function (v) {
         if (v !== value) {
           value = v;
           this.emit('change:' + attr);
           this.emit('change');
         }
       },
-      get : function () {
+      get: function () {
         return value;
       }
     })
@@ -34,7 +34,6 @@ define(['ofio/ofio', 'vendor/underscore', 'ofio/ofio.id', 'ofio/ofio.events'], f
       this.create_attribute(attr, attributes[attr]);
     }, this);
   };
-
 
 
   return module;

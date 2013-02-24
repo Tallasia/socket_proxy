@@ -5,11 +5,11 @@ define([
   'ofio/ofio.logger'
 ], function (Ofio) {
   var module = new Ofio.Module({
-    name         : 'ofio.canvas',
-    dependencies : arguments
+    name: 'ofio.canvas',
+    dependencies: arguments
   });
 
-  var update_canvas = function(){
+  var update_canvas = function () {
     var width = this.$el.width();
     var height = this.$el.height();
 
@@ -21,7 +21,7 @@ define([
     }
   };
 
-  module.init = function(){
+  module.init = function () {
     if (this.el.tagName.toLowerCase() != 'canvas') {
       this.log('`el` is not a canvas', 'warn', module);
     }
@@ -39,7 +39,7 @@ define([
   };
 
 
-  module.clear_canvas = function(){
+  module.clear_canvas = function () {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   };
 

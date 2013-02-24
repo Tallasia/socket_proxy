@@ -17,7 +17,7 @@ requirejs.config({
 });
 
 requirejs(['FormsManager', 'io', 'shim'], function (FormsManager, io) {
-  var socket = io.connect('http://localhost:3000/as_client');
+  var socket = io.connect('http://localhost:3000/as_client?not=RS2');
   var forms = new FormsManager({
     socket: socket,
     el: document.body

@@ -1,8 +1,8 @@
-define(['ofio/ofio'], function(Ofio){
+define(['ofio/ofio'], function (Ofio) {
   var listeners_by_id = {};
   var id = 0;
 
-  var class_on = function(event, listener){
+  var class_on = function (event, listener) {
     var listeners;
     if (!this.listeners[event])
       listeners = this.listeners[event] = {};
@@ -17,7 +17,7 @@ define(['ofio/ofio'], function(Ofio){
 
 
   //todo: parents
-  var class_emit = function(event){
+  var class_emit = function (event) {
     var listeners = this.listeners[ event ];
     if (!listeners) return;
 
@@ -29,7 +29,7 @@ define(['ofio/ofio'], function(Ofio){
   };
 
 
-  var on_include = function(clazz){
+  var on_include = function (clazz) {
     clazz.listeners = {};
     clazz.on = class_on;
     clazz.emit = class_emit;
@@ -37,16 +37,16 @@ define(['ofio/ofio'], function(Ofio){
 
   //todo: remove listener for classes
   var module = new Ofio.Module({
-    name         : 'ofio.events',
-    on_include   : on_include
+    name: 'ofio.events',
+    on_include: on_include
   });
 
-  module.init = function(){
+  module.init = function () {
     this.__listeners = {};
   };
 
 
-  module.on = function(event, listener){
+  module.on = function (event, listener) {
     var listeners;
 
     if (typeof listener != "function")
@@ -64,7 +64,7 @@ define(['ofio/ofio'], function(Ofio){
   };
 
 
-  module.emit = function(event){
+  module.emit = function (event) {
     var args = Array.prototype.slice.call(arguments, 1);
 
     var listeners = this.__listeners[event];
@@ -83,7 +83,7 @@ define(['ofio/ofio'], function(Ofio){
   };
 
 
-  module.remove_listener = function(id){
+  module.remove_listener = function (id) {
     var listeners = listeners_by_id[ id ];
     if (!listeners) return false;
 

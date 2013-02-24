@@ -9,8 +9,7 @@
     "example": "./example"
   },
   "dependencies": {
-    "socket.io": ">=0.5.2",
-    "requirejs": "*"
+    "socket.io": ">=0.5.2"
   },
   "engines": {
     "node": ">=0.8.0"

@@ -1,11 +1,11 @@
-define(function(){
+define(function () {
   /**
    * Copies all the properties of source into target.
    * @param {Object} target
    * @param {Object} source
    * @return {Object} extended target
    */
-  var merge = function(target, source){
+  var merge = function (target, source) {
     for (var prop in source) {
       target[prop] = source[prop];
     }
@@ -20,7 +20,7 @@ define(function(){
    * @param {Object} object
    * @return {*}
    */
-  var clone = function(object){
+  var clone = function (object) {
     return merge({}, object);
   };
 
@@ -53,7 +53,7 @@ define(function(){
    * @return {Function} Created class
    * @constructor
    */
-  var Ofio = function(params){
+  var Ofio = function (params) {
     params = params || {};
 
     /**
@@ -61,7 +61,7 @@ define(function(){
      * @type {Function}
      */
     this.new_class = this.create_class();
-    
+
     /**
      * Parent class
      * @type {Function|null}
@@ -73,15 +73,15 @@ define(function(){
      * @type {Object} keys are modules names, values are {@link Ofio.Module} instances
      */
     this.modules = {};
-    
+
     /**
      * A hash containig namespaces constructors
      * @type {Object}
      */
     this.namespaces = {};
-    
+
     /**
-     * 
+     *
      * @type {Object}
      */
     this.included = {};
@@ -90,7 +90,8 @@ define(function(){
     this.extend(params.extend);
     this.include_modules();
 
-    this.new_class.prototype.init = function(){};
+    this.new_class.prototype.init = function () {
+    };
 
     return this.new_class;
   };
@@ -100,15 +101,15 @@ define(function(){
    *
    * @return {Function}
    */
-  Ofio.prototype.create_class = function(){
+  Ofio.prototype.create_class = function () {
     var ofio = this;
 
-    var new_class = function(params){
+    var new_class = function (params) {
       Object.defineProperty(this, 'options', {
-        enumerable   : false,
-        configurable : false,
-        writable     : false,
-        value        : clone(params)
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: clone(params)
       });
 
       return ofio.init_class(this);
@@ -119,19 +120,20 @@ define(function(){
   };
 
 
-  Ofio.prototype.prepare_modules = function(modules){
-    Array.prototype.forEach.call(modules || [], function(module){
+  Ofio.prototype.prepare_modules = function (modules) {
+    Array.prototype.forEach.call(modules || [], function (module) {
       if (module instanceof Ofio.Module)
         this.modules[module.config.name] = module;
     }, this);
   };
 
 
-  Ofio.prototype.extend = function(parent){
+  Ofio.prototype.extend = function (parent) {
     if (typeof parent != "function") return;
     this.parent_class = parent;
 
-    var extend = function(){};
+    var extend = function () {
+    };
     extend.prototype = parent.prototype;
 
     this.new_class.prototype = new extend;
@@ -145,7 +147,7 @@ define(function(){
   };
 
 
-  Ofio.prototype.include_modules = function(modules){
+  Ofio.prototype.include_modules = function (modules) {
     modules = modules || this.modules;
     var included = this.included;
     var parent_ofio = this.parent_class && this.parent_class.ofio;
@@ -162,7 +164,7 @@ define(function(){
       if (!parent_included[name]) {
         var namespace = module.config.namespace;
         if (namespace) {
-          var namespace_constructor = this.namespaces[namespace] = function(instance){
+          var namespace_constructor = this.namespaces[namespace] = function (instance) {
             this.parent = instance;
           };
           namespace_constructor.prototype = module;
@@ -180,13 +182,13 @@ define(function(){
     }
   };
 
-  Ofio.prototype.init_class = function(instance){
+  Ofio.prototype.init_class = function (instance) {
     this.init_modules(instance);
 
     return instance.init && instance.init() || instance;
   };
 
-  Ofio.prototype.init_modules = function(instance, modules, inited){
+  Ofio.prototype.init_modules = function (instance, modules, inited) {
     modules = modules || this.modules;
     inited = inited || {};
 
@@ -210,16 +212,16 @@ define(function(){
 
   var Module = Ofio.Module = new Ofio;
 
-  Module.prototype.init = function(){
+  Module.prototype.init = function () {
     Object.defineProperty(this, "config", {
-      enumerable   : false,
-      configurable : false,
-      writable     : false,
-      value        : {
-        name         : '',
-        dependencies : {},
-        namespace    : '',
-        on_include   : function(){
+      enumerable: false,
+      configurable: false,
+      writable: false,
+      value: {
+        name: '',
+        dependencies: {},
+        namespace: '',
+        on_include: function () {
         }
       }
     });
@@ -227,7 +229,7 @@ define(function(){
     merge(this.config, this.options);
 
     var dependencies = {};
-    Array.prototype.forEach.call(this.config.dependencies || [], function(module){
+    Array.prototype.forEach.call(this.config.dependencies || [], function (module) {
       if (module instanceof Ofio.Module)
         dependencies[module.config.name] = module;
     });

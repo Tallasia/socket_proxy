@@ -7,10 +7,10 @@ Function.prototype.cache = function () {
   return this;
 };
 
-Function.prototype.once = function(){
+Function.prototype.once = function () {
   var res;
   var self = this;
-  var f = function() {
+  var f = function () {
     if (f.ran) return res;
     f.ran = true;
     res = self.apply(this, arguments);
@@ -26,11 +26,11 @@ Function.prototype.reset_cache = function () {
 
 define(['ofio/ofio'], function (Ofio) {
   var module = new Ofio.Module({
-    name         : 'ofio.cache',
-    dependencies : arguments
+    name: 'ofio.cache',
+    dependencies: arguments
   });
 
-  module.init = function(){
+  module.init = function () {
     for (var key in this) {
       var f = this[key];
       if (typeof f != 'function' || !f.cacheable) continue;
@@ -38,7 +38,7 @@ define(['ofio/ofio'], function (Ofio) {
     }
   };
 
-  module.reset_cache = function(){
+  module.reset_cache = function () {
     for (var key in this) {
       var f = this[key];
       if (typeof f != 'function' || !f.reset_cache) continue;

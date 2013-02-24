@@ -114,13 +114,13 @@
     return w.pluck(w.map(n,function (n, t, u) {
       return{value: n, index: t, criteria: e.call(r, n, t, u)}
     }).sort(function (n, t) {
-      var r = n.criteria, e = t.criteria;
-      if (r !== e) {
-        if (r > e || r === void 0)return 1;
-        if (e > r || e === void 0)return-1
-      }
-      return n.index < t.index ? -1 : 1
-    }), "value")
+        var r = n.criteria, e = t.criteria;
+        if (r !== e) {
+          if (r > e || r === void 0)return 1;
+          if (e > r || e === void 0)return-1
+        }
+        return n.index < t.index ? -1 : 1
+      }), "value")
   };
   var F = function (n, t, r, e) {
     var u = {}, i = k(t || w.identity);

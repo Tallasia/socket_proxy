@@ -1,11 +1,11 @@
 define(['ofio/ofio'], function (Ofio) {
   var module = new Ofio.Module({
-    name         : 'ofio.id'
+    name: 'ofio.id'
   });
 
   var id = 0;
 
-  module.init = function(){
+  module.init = function () {
     this.id = id++;
   };
 
