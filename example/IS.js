@@ -4,5 +4,5 @@ var proxy = new ProxySocketsServer({
 });
 
 proxy.filter = function (client_socket, server_socket) {
-  return client_socket.handshake.query.not != server_socket.handshake.query.name;
+  return client_socket.handshake.query.not != server_socket.handshake.name;
 };
