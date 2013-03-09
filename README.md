@@ -238,7 +238,7 @@ var proxy = new ProxySocketsServer({
 // You can redefine this function to define permitions
 proxy.filter = function (client_socket, server_socket) {
   // client_socket.handshake.query - GET params of connection
-  return client_socket.handshake.query.not != server_socket.handshake.query.name;
+  return client_socket.handshake.query.not != server_socket.handshake.name;
 };
 ```
 
