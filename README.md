@@ -88,15 +88,28 @@ Connecting servers
 ------------------
 
 To connect remote server just open WS connection using [Socket.IO library](http://socket.io) to adress 
-http://your.server.com:3000/as_server?name=NAME_OF_SERVER
+http://your.server.com:3000/as_server
 
-NAME_OF_SERVER is a string which will be used as id of server.
+After server is connected emit event "register" to set the name for server.
 
-After that start listen follow events of socket object:
+All events:
 
 ### "connect"
 
-Your server connected and registred on proxy server
+Your server connected to proxy server
+
+### "register"
+
+Use to set name for server. Before you register a server, it would not be able to clients.
+
+```js
+socket.on('connect', function () {
+  log('socket connected');
+  socket.emit('register', {
+    name: "RS1"
+  });
+});
+```
 
 ### "error"
 
