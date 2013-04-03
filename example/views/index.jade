@@ -1,0 +1,22 @@
+div
+    div.row
+        h1 title
+        p Welcome #{user.username || 'nobody'}
+
+.page
+    h2.form-signin-heading Please sign in
+    p
+    form#login(class='users form-signin', method='post', action='/login')
+        input(class='btn btn-primary',type='submit', value='Log In')
+
+
+.page
+    h2.form-signout-heading Please sign out
+    p
+    form#login(class='users form-signout', method='get', action='/logout')
+        input(class='btn btn-primary',type='submit', value='Log Out')
+
+
+
+.page
+    pre= out

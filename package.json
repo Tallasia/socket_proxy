@@ -9,9 +9,14 @@
     "example": "./example"
   },
   "dependencies": {
-    "socket.io": ">=0.5.2"
+    "socket.io": ">=0.5.2",
+    "cookie": "",
+    "connect-mongo": "",
+    "connect": "",
+    "express": ""
   },
   "engines": {
     "node": ">=0.8.0"
   }
 }
+
